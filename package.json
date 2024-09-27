@@ -2,11 +2,11 @@
   "name": "ts-backend-production-setup",
   "version": "1.0.0",
   "description": "This project setup in typescript and MongoDB for production.",
-  "main": "index.js",
+  "main": "src/server.js",
   "scripts": {
     "dist": "npx tsc",
-    "dev": "nodemon src/index.ts",
-    "start": "nodemon dist/index.js",
+    "dev": "nodemon src/server.ts",
+    "start": "nodemon dist/server.js",
     "prepare": "husky"
   },
   "author": "Jitendra Sahoo [7978020151]",
