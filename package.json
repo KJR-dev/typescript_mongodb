@@ -4,8 +4,14 @@
   "description": "This project setup in typescript and MongoDB for production.",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "test": "node test.js",
+    "start": "node index.js",
+    "prepare": "husky"
   },
   "author": "Jitendra Sahoo [7978020151]",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10"
+  }
 }
