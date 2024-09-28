@@ -5,25 +5,43 @@ import config from '../config/config'
 import { EApplicationEnvironment } from '../constant/application'
 import path from 'path'
 import * as sourceMapSupport from 'source-map-support'
-
+import { blue, red, yellow, green, magenta } from 'colorette'
 
 //Linking Trace Support
 sourceMapSupport.install()
+
+//Colorette
+const colorizeLevel = (level: string) => {
+    switch (level) {
+        case 'ERROR':
+            return red(level)
+            break
+        case 'INFO':
+            return blue(level)
+            break
+        case 'WARN':
+            return yellow(level)
+            break
+        default:
+            return level
+    }
+}
 
 //Console log setup
 const consoleLogFormat = format.printf((info) => {
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const { level, message, timestamp, meta = {} } = info
-    const customLevel = level.toUpperCase()
-    // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
-    const customTimestamp = timestamp
+    const customLevel = colorizeLevel(level.toUpperCase())
+     
+    const customTimestamp = green(timestamp as string)
     // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
     const customMessage = message
     const customMeta = util.inspect(meta, {
         showHidden: false,
-        depth: null
+        depth: null,
+        colors: true
     })
-    const customLog = `${customLevel}[${customTimestamp} ${customMessage}\n${'META'}${customMeta}]\n`
+    const customLog = `${customLevel}[${customTimestamp} ${customMessage}\n${magenta('META')}${customMeta}]\n`
     return customLog
 })
 
@@ -57,7 +75,7 @@ const fileLogFormat = format.printf((info) => {
         }
     }
     const logData = {
-        level: level.toUpperCase(),
+        level: colorizeLevel(level.toUpperCase()),
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         message,
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
