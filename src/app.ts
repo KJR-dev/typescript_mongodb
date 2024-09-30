@@ -5,10 +5,12 @@ import gobalErrorHandler from './middleware/gobalErrorHandler'
 import responseMessage from './constant/responseMessage'
 import httpError from './util/httpError'
 import { Request, Response } from 'express'
+import helmet from 'helmet'
 
 const app: Application = express()
 
 //Middleware
+app.use(helmet()) //Helmet
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../', 'public')))
 
