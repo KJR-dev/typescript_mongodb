@@ -14,9 +14,9 @@ const app: Application = express()
 app.use(helmet()) //Helmet
 app.use(
     cors({
-        // methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTION', 'HEAD'],
-        // origin: ['https://client.com'],
-        // credentials: true
+        methods: ['POST', 'GET', 'PATCH', 'DELETE', 'OPTION', 'HEAD'],
+        origin: ['https://client.com'],
+        credentials: true
     })
 )
 app.use(express.json())

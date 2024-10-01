@@ -51,6 +51,7 @@
         "helmet": "^8.0.0",
         "moment": "^2.30.1",
         "mongoose": "^8.7.0",
+        "rate-limiter-flexible": "^5.0.3",
         "source-map-support": "^0.5.21",
         "ts-migrate-mongoose": "^3.8.4",
         "winston": "^3.14.2",
