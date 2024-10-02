@@ -99,18 +99,22 @@ const fileTransport = (): Array<FileTransportInstance> => {
 
 //Mongodb logger
 const mongodbTransport = (): Array<MongoDBTransportInstance> => {
-    return [
-        new transports.MongoDB({
-            level: 'info',
-            db: config.DATABASE_URL as string,
-            metaKey: 'meta',
-            expireAfterSeconds: 3600 * 24 * 30,
-            // options:{
-            //     useUnifiedTopology: true
-            // },
-            collection: 'application-log'
-        })
-    ]
+    // Skip MongoDB transport in test environment
+    if (config.ENV !== 'test') {
+        return [
+            new transports.MongoDB({
+                level: 'info',
+                db: config.DATABASE_URL as string,
+                metaKey: 'meta',
+                expireAfterSeconds: 3600 * 24 * 30,
+                // options:{
+                //     useUnifiedTopology: true
+                // },
+                collection: 'application-log'
+            })
+        ]
+    }
+    return []
 }
 
 export default createLogger({
